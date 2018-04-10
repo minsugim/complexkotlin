@@ -30,26 +30,25 @@ fun Int.times(block: () -> Unit): Unit {
 fun process(message: String, block: (String) -> String): String {
     return ">>> ${message}: {" + block(message) + "}"
 }
-val r1 = process("FOO", {("FOO") -> return "Bar"}) // call process() with message "FOO" and a block that returns "BAR"
+val r1 = process("FOO", {"BAR"}) // call process() with message "FOO" and a block that returns "BAR"
 
 val r2_message = "wooga"
-val r2 = "" // call process() with message "FOO" and a block that upper-cases 
+val r2 = process("FOO", {(r2_message + r2_message + r2_message).toUpperCase()}) // call process() with message "FOO" and a block that upper-cases 
             // r2_message, and repeats it three times with no spaces: "WOOGAWOOGAWOOGA"
 
-
-//write an enum-based state machine between talking and thinking
-// enum class Philosopher { 
-//     THINKING {
-//         override fun toString() = {
-//             return "Deep thoughts"
-//         }
-//     }, 
-//     TALKING {
-//         override fun toString() = {
-//             return "Allow me to suggest an idea..."
-//         }
-//     }
-// }
+write an enum-based state machine between talking and thinking
+enum class Philosopher { 
+    THINKING {
+        override fun toString() = {
+            return "Deep thoughts"
+        }
+    }, 
+    TALKING {
+        override fun toString() = {
+            return "Allow me to suggest an idea..."
+        }
+    }
+}
 
 // create an class "Command" that can be used as a function (provide an "invoke()" function)
 // that takes a single parameter ("message" of type String)
@@ -65,9 +64,9 @@ class Command(val prompt: String) {
 // ================================
 println("map fold test: " + if (mapFoldResults == "FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ") "." else "!")
 
-// println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
+println("r1 test: " + if (r1 == ">>> FOO: {BAR}") "." else "!")
 
-// println("r2 test: " + if (r2 == ">>> FOO: {WOOGAWOOGAWOOGA}") "." else "!")
+println("r2 test: " + if (r2 == ">>> FOO: {WOOGAWOOGAWOOGA}") "." else "!")
 
 // // var seneca = Philosopher.THINKING
 // print("Seneca, talk! ")
